@@ -13,6 +13,5 @@ I want the user to be able to share their comments as well as share their own re
 Here's what I need in order for this to work:
 * spirit directory
 * image of cocktail
-* metric converter
-* textfield for comments
-* textfield to submit their own cocktail recipes.
+
+
