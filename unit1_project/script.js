@@ -1,3 +1,4 @@
+const apiKey = `9973533`
 const button = document.querySelector('#submit');
 
 
@@ -14,15 +15,30 @@ button.addEventListener('click', async () => {
     let measurements = document.querySelector('#measurements');
     let instructions = document.querySelector('#instructions');
 
-    const response = await axios.get(`http://www.thecocktaildb.com/api/json/v1/1/search.php?s=${input}`);
+    const response = await axios.get(`http://www.thecocktaildb.com/api/json/v2/${apiKey}/search.php?s=${input}`);
     const cocktailData = response.data;
     console.log(cocktailData);
 
- const cocktailPic = cocktailData.drinks[i].strDrink.strDrinkThumb;
- cocktailImage.setAttribute('src', cocktailPic);
+
+    
+// retrieve and display image of cocktail by running a loop because str.DrinkThumb was an array within an object:
+
+const cocktailPic = cocktailData.drinks;
+for (let i = 0; i < cocktailPic.length; i++) {
+   let cocktailImageURL = cocktailPic[0].strDrinkThumb;
+   let cocktailImage = document.querySelector('#cocktail-image');
+   cocktailImage.setAttribute('src', cocktailImageURL);
+}
+
+const drinkName = cocktailData.drinks;
+for (let i = 0; i < drinkName.length; i++){
+    let coktailRecipeElement = drinkName[i].strDrink;
+    let recipeName = document.querySelector('#recipe-name');
+    recipeName.textContent = coktailRecipeElement;
+
+}
 
 })
 
-// retrieve and display image of cocktail:
 
-// const cocktailPic = cocktailData.drinks[i].strDrink.strDrinkThumb
+
