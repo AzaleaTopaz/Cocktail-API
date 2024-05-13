@@ -49,10 +49,39 @@ for(let i = 0; i < glassName.length; i++){
     glassware.textContent = glasswareElement;
 }
 
-// creating an array for ingredients:
+// creating an array for ingredients: here I thought I needed to creat an array, but I found another way to grab the ingredients.
 
-// let ingredient1 = cocktailData.drinks.strIngredient1;
+// const ingredientName1 = cocktailData.drinks
+// for( let i = 0; i < ingredientName1.length; i++){
+// let ingredient1 = ingredientName1[i].strIngredient1;
 // console.log(ingredient1);
+// }
+
+// const ingredientName2 = cocktailData.drinks
+// for( let i = 0; i < ingredientName2.length; i++){
+// let ingredient2 = ingredientName2[i].strIngredient2;
+// console.log(ingredient2);
+// }
+// const ingredientName3 = cocktailData.drinks
+// for( let i = 0; i < ingredientName3.length; i++){
+// let ingredient3 = ingredientName3[i].strIngredient3;
+// console.log(ingredient3);
+// }
+
+//  I used to chat gpt to see if i can do nested loops to retrieve the list of ingredients: here is the code example I used to figure this out instead of repeating code: 
+//      for (let i = 0; i < 3; i++) {
+    //   for (let j = 0; j < 3; j++) {
+    //     console.log(`i: ${i}, j: ${j}`);
+    // }
+// }
+
+
+for (let i = 0; i < cocktailData.drinks.length; i++) {
+    for(let j = 1; j <= 7; j++){
+        ingredients = cocktailData.drinks[i][`strIngredient${j}`];
+        console.log(ingredients);
+    }
+}
 
 
 
