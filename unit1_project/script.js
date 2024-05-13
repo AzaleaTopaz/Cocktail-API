@@ -15,7 +15,7 @@ button.addEventListener('click', async () => {
     let measurements = document.querySelector('#measurements');
     let instructions = document.querySelector('#instructions');
 
-    const response = await axios.get(`http://www.thecocktaildb.com/api/json/v2/${apiKey}/search.php?s=${input}`);
+    const response = await axios.get(`https://www.thecocktaildb.com/api/json/v2/${apiKey}/search.php?s=${input}`);
     const cocktailData = response.data;
     console.log(cocktailData);
 
@@ -25,7 +25,7 @@ button.addEventListener('click', async () => {
 
 const cocktailPic = cocktailData.drinks;
 for (let i = 0; i < cocktailPic.length; i++) {
-   let cocktailImageURL = cocktailPic[0].strDrinkThumb;
+   let cocktailImageURL = cocktailPic[i].strDrinkThumb;
    let cocktailImage = document.querySelector('#cocktail-image');
    cocktailImage.setAttribute('src', cocktailImageURL);
 }
@@ -49,9 +49,11 @@ for(let i = 0; i < glassName.length; i++){
     glassware.textContent = glasswareElement;
 }
 
+// creating an array for ingredients:
+
+// let ingredient1 = cocktailData.drinks.strIngredient1;
+// console.log(ingredient1);
+
 
 
 })
-
-
-
