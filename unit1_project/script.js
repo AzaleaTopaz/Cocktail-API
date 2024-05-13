@@ -30,13 +30,26 @@ for (let i = 0; i < cocktailPic.length; i++) {
    cocktailImage.setAttribute('src', cocktailImageURL);
 }
 
+// retrieving cocktail name:
+
 const drinkName = cocktailData.drinks;
 for (let i = 0; i < drinkName.length; i++){
-    let coktailRecipeElement = drinkName[i].strDrink;
+    let cocktailRecipeElement = drinkName[i].strDrink;
     let recipeName = document.querySelector('#recipe-name');
-    recipeName.textContent = coktailRecipeElement;
+    recipeName.textContent = cocktailRecipeElement;
 
 }
+
+// retrieving glassware:
+
+const glassName = cocktailData.drinks;
+for(let i = 0; i < glassName.length; i++){
+    let glasswareElement = glassName[i].strGlass;
+    let glassware = document.querySelector('#glassware');
+    glassware.textContent = glasswareElement;
+}
+
+
 
 })
 
