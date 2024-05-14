@@ -11,7 +11,7 @@ button.addEventListener('click', async () => {
     let cocktailImage = document.querySelector('#cocktail-image');
     let recipeName = document.querySelector('#recipe-name');
     let glassware = document.querySelector('#glassware');
-    let ingredients = document.querySelector('#ingredients');
+    // let ingredients = document.querySelector('#ingredients');
     let measurements = document.querySelector('#measurements');
     let instructions = document.querySelector('#instructions');
 
@@ -31,7 +31,7 @@ for (let i = 0; i < cocktailPic.length; i++) {
 }
 
 // retrieving cocktail name:
-
+//  how to get this to 
 const drinkName = cocktailData.drinks;
 for (let i = 0; i < drinkName.length; i++){
     let cocktailRecipeElement = drinkName[i].strDrink;
@@ -76,12 +76,31 @@ for(let i = 0; i < glassName.length; i++){
 // }
 
 
-for (let i = 0; i < cocktailData.drinks.length; i++) {
+   
+    // ingredients.innerHTML = ''; 
+
+    for (let i = 0; i < cocktailData.drinks.length; i++) {
+    let ingredients = document.querySelector('#ingredients');
     for(let j = 1; j <= 7; j++){
-        ingredients = cocktailData.drinks[i][`strIngredient${j}`];
-        console.log(ingredients);
+        const ingredientsList = cocktailData.drinks[i][`strIngredient${j}`];
+        console.log(ingredientsList);
+
+        ingredientsList.innerHTML = '';
+
+        let ingredientElement = document.createElement('li');
+        ingredientElement.innerText = ingredientsList;
+        ingredients.appendChild(ingredientElement);
+        
+
+        // checking to see if the list item is empty:
+
+         
+        if(!ingredientElement.innerText.trim()) {
+            ingredientElement.parentNode.removeChild(ingredientElement);
+        }
+        }
     }
-}
+
 
 
 
