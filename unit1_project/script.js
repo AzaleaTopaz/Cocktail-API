@@ -8,30 +8,53 @@ const button = document.querySelector('#submit');
 button.addEventListener('click', async () => {
     const input = document.querySelector('#text-input').value.toLowerCase();
     console.log(input);
-    let cocktailImage = document.querySelector('#cocktail-image');
-    let recipeName = document.querySelector('#recipe-name');
-    let glassware = document.querySelector('#glassware');
-    // let ingredients = document.querySelector('#ingredients');
-    let measurements = document.querySelector('#measurements');
-    let instructions = document.querySelector('#instructions');
+    document.querySelector('#ingredients').innerHTML = '';
 
     const response = await axios.get(`https://www.thecocktaildb.com/api/json/v2/${apiKey}/search.php?s=${input}`);
     const cocktailData = response.data;
     console.log(cocktailData);
 
+// let cocktailContainer = document.querySelector('#cocktail-container');
 
-    
+// for (let i = 0; i < cocktailData.drinks.length; i++){
+//   let drink = cocktailData.drinks[i];
+
+//   let recipeInfo = document.querySelector('#recipe-info');
+//   let cocktailImage = document.querySelector('#cocktail-image');
+//   let cocktailName = document.querySelector('#cocktail-name');
+//   let ingredients = document.querySelector('#ingredients');
+
+
+//     cocktailImage.src = drink.strDrinkThumb;
+//     cocktailName.textContent = drink.strDrink;
+
+//   for(let j = 1; j <= 15; j++){
+//     let ingredient = drink[`strIngredient${j}`];
+//     let measure = drink[`strMeasure${j}`];
+//     if (ingredient && measure){
+//         let listItem = document.createElement('li');
+//         listItem.textContent = `${measure} ${ingredient}`;
+//         ingredients.appendChild(listItem);
+
+//     }
+//   }
+// recipeInfo.appendChild(cocktailImage);
+// recipeInfo.appendChild(cocktailName);
+// recipeInfo.appendChild(ingredients);
+// cocktailContainer.appendChild(recipeInfo);
+// }
+
 // retrieve and display image of cocktail by running a loop because str.DrinkThumb was an array within an object:
 
-const cocktailPic = cocktailData.drinks;
-for (let i = 0; i < cocktailPic.length; i++) {
-   let cocktailImageURL = cocktailPic[i].strDrinkThumb;
-   let cocktailImage = document.querySelector('#cocktail-image');
-   cocktailImage.setAttribute('src', cocktailImageURL);
+let cocktailImage = document.querySelector('#cocktail-image'); 
+for (let i = 0; i < cocktailData.drinks.length; i++) {
+   cocktailImage.src = cocktailData.drinks[i].strDrinkThumb;
+   
+
 }
 
-// retrieving cocktail name:
-//  how to get this to 
+// // retrieving cocktail name:
+// //  how to get this to 
 const drinkName = cocktailData.drinks;
 for (let i = 0; i < drinkName.length; i++){
     let cocktailRecipeElement = drinkName[i].strDrink;
@@ -40,7 +63,7 @@ for (let i = 0; i < drinkName.length; i++){
 
 }
 
-// retrieving glassware:
+// // retrieving glassware:
 
 const glassName = cocktailData.drinks;
 for(let i = 0; i < glassName.length; i++){
@@ -48,6 +71,7 @@ for(let i = 0; i < glassName.length; i++){
     let glassware = document.querySelector('#glassware');
     glassware.textContent = glasswareElement;
 }
+
 
 // creating an array for ingredients: here I thought I needed to creat an array, but I found another way to grab the ingredients.
 
@@ -68,40 +92,76 @@ for(let i = 0; i < glassName.length; i++){
 // console.log(ingredient3);
 // }
 
-//  I used to chat gpt to see if i can do nested loops to retrieve the list of ingredients: here is the code example I used to figure this out instead of repeating code: 
+//  I used chat gpt to see if i can do nested loops to retrieve the list of ingredients: here is the code example I used to figure this out instead of repeating code: 
 //      for (let i = 0; i < 3; i++) {
     //   for (let j = 0; j < 3; j++) {
     //     console.log(`i: ${i}, j: ${j}`);
     // }
 // }
+const cocktailContainer = document.querySelector('#cocktail-container');
 
+for (let i = 0; i < cocktailData.drinks.length; i++) {
+    let ingredients = document.querySelector('#ingredients');
+    let cocktail = document.createElement('div');
+    // cocktailContainer.appendChild(cocktail);
+    let title = document.createElement('h2');
+    title.innerText = cocktailData.drinks[i].strDrink;
+    cocktail.appendChild(title);
+    let ingredientList = document.createElement('ul');
+    cocktail.appendChild(ingredientList)
+    for(let j = 1; j <= 15; j++){
+        const ingredient = cocktailData.drinks[i][`strIngredient${j}`];
+        console.log(ingredient);
+        // ingredient.innerHTML = '';
+        if (ingredient) { 
+        let listItem = document.createElement('li');
+        listItem.innerText = ingredient;
+        ingredientList.appendChild(listItem);
+    
+        
+        }
+        cocktailContainer.appendChild(cocktail);
+    }
 
    
-    // ingredients.innerHTML = ''; 
+   
+     
+// retrieving measurements:
 
-    for (let i = 0; i < cocktailData.drinks.length; i++) {
-    let ingredients = document.querySelector('#ingredients');
-    for(let j = 1; j <= 7; j++){
-        const ingredientsList = cocktailData.drinks[i][`strIngredient${j}`];
-        console.log(ingredientsList);
+// for (let i = 0; i < cocktailData.drinks.length; i++) {
+//     let measurements = document.querySelector('#measurements');
+// for(let j = 0; j <= 15; j++){
+//     const measurement = cocktailData.drinks[i][`strMeasure${j}`];
+//     console.log(measurement);
+//     // measurement.innerHTML = '';
+//     if (measurement) { 
+//     let listItem2 = document.createElement('li');
+//     listItem2.innerText = measurement;
+//     measurements.appendChild(listItem2);
+    
+//     }
 
-        ingredientsList.innerHTML = '';
+// }
+        
+        
+        
 
-        let ingredientElement = document.createElement('li');
-        ingredientElement.innerText = ingredientsList;
-        ingredients.appendChild(ingredientElement);
+        
+
         
 
         // checking to see if the list item is empty:
 
-         
-        if(!ingredientElement.innerText.trim()) {
-            ingredientElement.parentNode.removeChild(ingredientElement);
-        }
-        }
-    }
+        //  
+        // if(!ingredientElement.innerText.trim()) {
+        //     ingredientElement.parentNode.removeChild(ingredientElement);
+        // }
+        // }
+    // }
 
 
+// }
 
 
+}
 })
