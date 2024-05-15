@@ -16,7 +16,7 @@ button.addEventListener('click', async () => {
 
 
 
-
+///////////// Tom and Britney assisted me with this today /////////////
 
 // creating a cocktail container
 const cocktailContainer = document.querySelector('#cocktail-container');
