@@ -8,11 +8,93 @@ const button = document.querySelector('#submit');
 button.addEventListener('click', async () => {
     const input = document.querySelector('#text-input').value.toLowerCase();
     console.log(input);
-    document.querySelector('#ingredients').innerHTML = '';
+    document.querySelector('#text-input').innerHTML = '';
 
     const response = await axios.get(`https://www.thecocktaildb.com/api/json/v2/${apiKey}/search.php?s=${input}`);
     const cocktailData = response.data;
     console.log(cocktailData);
+
+
+
+
+
+// creating a cocktail container
+const cocktailContainer = document.querySelector('#cocktail-container');
+// looping through drinks
+for (let i = 0; i < cocktailData.drinks.length; i++) {
+  //  creating a div for cocktails
+    let cocktail = document.createElement('div');
+    
+// creating a title for cocktails
+    let title = document.createElement('h2');
+    title.innerText = cocktailData.drinks[i].strDrink;
+    cocktail.appendChild(title);
+   
+//  retrieving cocktail images 
+let cocktailImage = document.createElement('img')
+cocktailImage.src = cocktailData.drinks[i].strDrinkThumb;
+cocktail.appendChild(cocktailImage)
+
+// retrieving glassware names
+let glassName = document.createElement('h3');
+    glassName.innerText = cocktailData.drinks[i].strGlass;
+    cocktail.appendChild(glassName);
+
+// creating unordered list and list items for measurements and ingredients
+    let ingredientList = document.createElement('ul');
+    cocktail.appendChild(ingredientList)
+    
+    for(let j = 1; j <= 15; j++){
+        const measurement = cocktailData.drinks[i][`strMeasure${j}`]
+        const ingredient = cocktailData.drinks[i][`strIngredient${j}`];
+        console.log(ingredient);
+        if (measurement && ingredient) { 
+        let listItem = document.createElement('li');
+        listItem.innerText = `${measurement} - ${ingredient}`;
+        ingredientList.appendChild(listItem);
+    }
+    cocktailContainer.appendChild(cocktail);
+}
+
+// retrieving cocktail instructions
+let instructions = document.createElement('p');
+    instructions.innerText = cocktailData.drinks[i].strInstructions;
+    cocktail.appendChild(instructions);
+    
+
+
+    
+        
+
+        
+ ////////////////// Trial and Error /////////////////////////////   
+
+// // retrieving glassware:
+
+// const glassName = cocktailData.drinks;
+// for(let i = 0; i < glassName.length; i++){
+//     let glasswareElement = glassName[i].strGlass;
+//     let glassware = document.querySelector('#glassware');
+//     glassware.textContent = glasswareElement;
+// }
+        
+// let cocktailImage = document.querySelector('#cocktail-image'); 
+// for (let i = 0; i < cocktailData.drinks.length; i++) {
+//    cocktailImage.src = cocktailData.drinks[i].strDrinkThumb;
+   
+
+// }
+  
+
+// // retrieving cocktail name:
+// //  how to get this to 
+// const drinkName = cocktailData.drinks;
+// for (let i = 0; i < drinkName.length; i++){
+//     let cocktailRecipeElement = drinkName[i].strDrink;
+//     let recipeName = document.querySelector('#recipe-name');
+//     recipeName.textContent = cocktailRecipeElement;
+
+// }
 
 // let cocktailContainer = document.querySelector('#cocktail-container');
 
@@ -45,61 +127,6 @@ button.addEventListener('click', async () => {
 // }
 
 // retrieve and display image of cocktail by running a loop because str.DrinkThumb was an array within an object:
-
-let cocktailImage = document.querySelector('#cocktail-image'); 
-for (let i = 0; i < cocktailData.drinks.length; i++) {
-   cocktailImage.src = cocktailData.drinks[i].strDrinkThumb;
-   
-
-}
-
-// // retrieving cocktail name:
-// //  how to get this to 
-const drinkName = cocktailData.drinks;
-for (let i = 0; i < drinkName.length; i++){
-    let cocktailRecipeElement = drinkName[i].strDrink;
-    let recipeName = document.querySelector('#recipe-name');
-    recipeName.textContent = cocktailRecipeElement;
-
-}
-
-// // retrieving glassware:
-
-const glassName = cocktailData.drinks;
-for(let i = 0; i < glassName.length; i++){
-    let glasswareElement = glassName[i].strGlass;
-    let glassware = document.querySelector('#glassware');
-    glassware.textContent = glasswareElement;
-}
-
-
-
-const cocktailContainer = document.querySelector('#cocktail-container');
-
-for (let i = 0; i < cocktailData.drinks.length; i++) {
-    let ingredients = document.querySelector('#ingredients');
-    let cocktail = document.createElement('div');
-    // cocktailContainer.appendChild(cocktail);
-    let title = document.createElement('h2');
-    title.innerText = cocktailData.drinks[i].strDrink;
-    cocktail.appendChild(title);
-    let ingredientList = document.createElement('ul');
-    cocktail.appendChild(ingredientList)
-    for(let j = 1; j <= 15; j++){
-        const ingredient = cocktailData.drinks[i][`strIngredient${j}`];
-        console.log(ingredient);
-        // ingredient.innerHTML = '';
-        if (ingredient) { 
-        let listItem = document.createElement('li');
-        listItem.innerText = ingredient;
-        ingredientList.appendChild(listItem);
-    
-        
-        }
-        cocktailContainer.appendChild(cocktail);
-    }
-
-   
    
      
 // retrieving measurements:
@@ -139,5 +166,5 @@ for (let i = 0; i < cocktailData.drinks.length; i++) {
 // }
 
 
-}
+ }
 })
