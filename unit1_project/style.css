@@ -111,10 +111,10 @@ img {
     ul {
     list-style-type: none;
     display: flex;
-    /* justify-content: flex-start; */
     align-items: center;
     flex-direction: column; 
     letter-spacing: 1px;
+    
     }
 
 p {
@@ -125,6 +125,22 @@ p {
 
 
 }
+/* responsive design for tablets */
+@media screen and (max-width: 615px){
+    h1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        font-family: 'Homemade Apple';
+        font-size: 34px;
+        color: #00296b;
+        letter-spacing: 2px;
+
+    }
+}
+/* css for mobile screens */
+
 @media screen and (max-width: 400px){
 
     body{
@@ -145,6 +161,15 @@ p {
     button {
         background-color: #00296b;
         font-size: 24px;
+    }
+
+    input{
+        font-size: 24px;
+        text-align: center;
+        border: none;
+        background-color: transparent;
+        font-family: 'Amatic SC';
+        color: #f4f4f9;
     }
 
     h2 {
@@ -197,5 +222,10 @@ p {
      p {
             color: #f4f4f9;
             letter-spacing: 1px;
+            }
+
+            div {
+                
+                padding-bottom: 20px;
             }
 }
