@@ -64,10 +64,14 @@ button{
     justify-content: center;
     align-items: center;
     border: none;
-    font-size: 78px;
+    font-size: 48px;
     background-color: #f4f4f9;
     margin-top: 30px;
     margin-bottom: 20px;
+    font-family: 'Homemade Apple';
+    color:#00296b;
+
+    
     
 }
    
@@ -161,6 +165,8 @@ p {
     button {
         background-color: #00296b;
         font-size: 24px;
+        color:#f4f4f9;
+        font-family: 'Homemade Apple';
     }
 
     input{
