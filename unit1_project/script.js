@@ -18,9 +18,11 @@ button.addEventListener('click', async () => {
     const cocktailData = response.data;
     console.log(cocktailData);
 
-    if (input == ''){
-        console.log('Please enter a search query.');
-        return;
+    if (!cocktailData.drinks){
+    //    return console.log('Drink not found.');  
+       let error = document.createElement('h3');
+      error.innerText = "Cocktail not found.";
+      return cocktailContainer.appendChild(error);
 
     }
 
@@ -66,7 +68,7 @@ cocktail.appendChild(cocktailImage)
         listItem.innerText = `${measurement} - ${ingredient}`;
         ingredientList.appendChild(listItem);
     }
-    
+
 }
 
 // retrieving cocktail instructions
