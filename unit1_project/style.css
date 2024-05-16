@@ -70,6 +70,7 @@ button{
     margin-bottom: 20px;
     font-family: 'Homemade Apple';
     color:#00296b;
+    text-decoration: underline;
 
     
     
@@ -168,6 +169,7 @@ p {
         color:#f4f4f9;
         font-family: 'Homemade Apple';
         font-size: 12px;
+        text-decoration: underline;
     }
 
     input{
