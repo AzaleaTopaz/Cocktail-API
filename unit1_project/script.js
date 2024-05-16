@@ -8,7 +8,7 @@ const button = document.querySelector('#submit');
 const cocktailContainer = document.querySelector('#cocktail-container');
 button.addEventListener('click', async () => {
     cocktailContainer.innerHTML = "";
-    console.log( cocktailContainer.innerHTML)
+    // console.log( cocktailContainer.innerHTML)
    
    const input = document.querySelector('#text-input').value.toLowerCase();
     // Will helped me with this//
@@ -32,9 +32,11 @@ button.addEventListener('click', async () => {
 // creating a cocktail container
 // const cocktailContainer = document.querySelector('#cocktail-container');
 // looping through drinks
+
 for (let i = 0; i < cocktailData.drinks.length; i++) {
   //  creating a div for cocktails
     let cocktail = document.createElement('div');
+    
     
 // creating a title for cocktails
     let title = document.createElement('h2');
